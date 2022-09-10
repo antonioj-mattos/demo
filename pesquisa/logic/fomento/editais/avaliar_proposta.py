@@ -15,6 +15,7 @@ class Comando(pydantic.BaseModel):
 
 
 class AvaliarProposta:
+
     def executar(comando: Comando) -> None:
 
         with transaction.atomic():

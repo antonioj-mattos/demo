@@ -11,18 +11,18 @@ class Comando(pydantic.BaseModel):
     proposta_id: int
 
 
-class SubmeterProposta:
+class AutorizarProposta:
 
     def executar(comando: Comando) -> None:
 
         with transaction.atomic():
             proposta = PropostaEditalFomento.objects.select_for_update().get(pk=comando.proposta_id)
 
-            if not can_proceed(proposta.submeter):
+            if not can_proceed(proposta.autorizar):
                 raise PermissionDenied()
 
-            proposta.submeter()
+            proposta.autorizar()
             proposta.save()
 
 
-executar = SubmeterProposta.executar
+executar = AutorizarProposta.executar

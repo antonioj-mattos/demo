@@ -57,7 +57,7 @@ class PropostaEditalFomento(models.Model):
         target=EstadoProposta.Recepcionada,
     )
     def avaliar(self):
-        "O avaliador pode recepicionar a porposta para avaliação."
+        "O avaliador pode recepicionar a proposta para avaliação."
 
     @transition(
         field=estado,

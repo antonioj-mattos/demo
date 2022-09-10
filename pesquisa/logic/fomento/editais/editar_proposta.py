@@ -12,6 +12,7 @@ class Comando(pydantic.BaseModel):
 
 
 class EditarProposta:
+
     def executar(comando: Comando) -> None:
 
         with transaction.atomic():
