@@ -8,8 +8,7 @@ class EstadoProposta:
     Aberta = 1
     Submetida = 2
     Recepcionada = 3
-    Autorizada = 4
-    Cancelada = 5
+    Finalizada = 4
 
 
 class PropostaEditalFomento(models.Model):
@@ -46,7 +45,7 @@ class PropostaEditalFomento(models.Model):
     @transition(
         field=estado,
         source=EstadoProposta.Aberta,
-        target=EstadoProposta.Cancelada,
+        target=EstadoProposta.Finalizada,
     )
     def cancelar(self):
         "O autor pode cancelar a proposta enquanto aberta."
@@ -78,7 +77,7 @@ class PropostaEditalFomento(models.Model):
     @transition(
         field=estado,
         source=EstadoProposta.Recepcionada,
-        target=EstadoProposta.Autorizada,
+        target=EstadoProposta.Finalizada,
     )
     def autorizar(self):
         "O avaliador pode autorizar a proposta."
